@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.TreeSet;
 
 public class Thanos {
@@ -15,13 +16,18 @@ public class Thanos {
 
         // TODO 1 : Retrieve and remove the oldest hero in one line
         Hero oldest = null;
-
+        heroes.pollLast();
         System.out.println("\nOldest hero:");
         System.out.println(oldest == null ? "" : oldest.getName());
 
         // TODO 2: Show heroes by age (descending)
-        System.out.println("\nHeroes by age (descending) :");
+        TreeSet<Hero> heroesSortByAge = (TreeSet<Hero>)heroes.descendingSet();
+        System.out.println("\nHeroes list origin :");
         for (Hero hero : heroes) {
+            System.out.println(hero.getName() + ", " + hero.getAge());
+        }
+        System.out.println("\nHeroes by age (descending) :");
+        for (Hero hero : heroesSortByAge) {
             System.out.println(hero.getName() + ", " + hero.getAge());
         }
 
@@ -32,7 +38,8 @@ public class Thanos {
         heroes.add(ironman);
 
         System.out.println("\nSubset of heroes :");
-        for (Hero hero : heroes) {
+
+        for (Hero hero : heroes.subSet(spiderman, true, ironman, true)) {
             System.out.println(hero.getName() + ", " + hero.getAge());
         }
     }
